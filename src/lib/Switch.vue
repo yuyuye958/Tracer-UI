@@ -1,5 +1,5 @@
 <template>
-  <button @click="toggle" :class="{checked: value}">
+  <button class="t-switch" @click="toggle" :class="{'t-checked': value}">
     <span/>
   </button>
 </template>
@@ -19,10 +19,10 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 $h: 22px;
 $h2: $h - 4px;
-button {
+.t-switch {
   height: $h;
   width: $h * 2;
   border: none;
@@ -41,7 +41,7 @@ button {
     transition: all 250ms;
   }
 
-  &.checked {
+  &.t-checked {
     background: #1890ff;
 
     > span {
@@ -59,7 +59,7 @@ button {
     }
   }
 
-  &.checked:active {
+  &.t-checked:active {
     > span {
       width: $h2 + 4px;
       margin-left: -4px;
