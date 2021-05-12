@@ -6,7 +6,7 @@
 
 <script lang="ts">
 export default {
-  name: 'Switch',
+  name: 't-switch',
   props: {
     value: Boolean,
   },
