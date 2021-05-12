@@ -61,6 +61,10 @@ export default {
   box-sizing: border-box;
   outline: none;
 
+  & + & {
+    margin-left: 8px;
+  }
+
   &[disabled] {
     cursor: not-allowed;
     color: grey;

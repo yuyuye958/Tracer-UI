@@ -42,7 +42,6 @@ export default {
 </script>
 <style lang="scss" scoped>
 ::v-deep .t-button {
-  margin-right: .5rem;
-  margin-top: .5rem;
+  margin-top: 8px;
 }
 </style>
