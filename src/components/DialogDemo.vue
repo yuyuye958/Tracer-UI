@@ -2,8 +2,12 @@
   <div>Dialog 示例</div>
 
   <t-button @click="toggle">toggle</t-button>
-  <t-dialog v-model:visible="dialogVisible">
-
+  <t-dialog
+      v-model:visible="dialogVisible"
+      title="测试标题"
+      :ok="ok">
+    <div>内容1</div>
+    <div>内容2</div>
   </t-dialog>
 </template>
 
@@ -23,9 +27,14 @@ export default {
     const toggle = () => {
       dialogVisible.value = !dialogVisible.value
     }
+    const ok = () => {
+      console.log('ok')
+      return true
+    }
     return {
       dialogVisible,
-      toggle
+      toggle,
+      ok
     }
   }
 }

@@ -1,18 +1,18 @@
 <template>
   <template v-if="visible">
-    <div class="t-dialog-overlay"></div>
+    <div class="t-dialog-overlay" @click="handleClickOverlay"></div>
     <div class="t-dialog-wrapper">
       <div class="t-dialog">
         <header>
-          Header
-          <span class="t-dialog-close"></span>
+          {{ title }}
+          <span class="t-dialog-close" @click="closeDialog"></span>
         </header>
         <main>
-          <p>Content</p>
+          <slot/>
         </main>
         <footer>
-          <Button theme="primary">OK</Button>
-          <Button>Cancel</Button>
+          <Button theme="primary" @click="handleOk">OK</Button>
+          <Button @click="handleCancel">Cancel</Button>
         </footer>
       </div>
     </div>
@@ -31,7 +31,36 @@ export default {
     visible: {
       type: Boolean,
       default: false
+    },
+    closeOnClickOverlay: {
+      type: Boolean,
+      default: true
+    },
+    title: {
+      type: String,
+      default: '提示'
+    },
+    ok: Function
+  },
+  setup(props, context) {
+    const closeDialog = () => {
+      context.emit('update:visible', false)
     }
+    const handleClickOverlay = () => {
+      if (props.closeOnClickOverlay) {
+        closeDialog()
+      }
+    }
+    const handleOk = () => {
+      if (!!props.ok?.()) {
+        closeDialog()
+      }
+    }
+    const handleCancel = () => {
+      context.emit('cancel')
+      closeDialog()
+    }
+    return { closeDialog, handleClickOverlay, handleOk, handleCancel }
   }
 };
 </script>
