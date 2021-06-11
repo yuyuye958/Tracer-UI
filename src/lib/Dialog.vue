@@ -9,7 +9,7 @@
             <span class="t-dialog-close" @click="closeDialog"></span>
           </header>
           <main>
-            <slot/>
+            <slot name="content"/>
           </main>
           <footer>
             <Button theme="primary" @click="handleOk">OK</Button>
@@ -59,7 +59,7 @@ export default {
       }
     }
     const handleCancel = () => {
-      context.emit('cancel')
+      props.cancel?.()
       closeDialog()
     }
     return { closeDialog, handleClickOverlay, handleOk, handleCancel }
